@@ -8,6 +8,11 @@ const initialState = {
     data: null,
     error: null,
   },
+  coin: {
+    isLoad: false,
+    data: null,
+    error: null,
+  },
 };
 
 // 로딩중 상태
@@ -26,9 +31,15 @@ const success = data => ({
 
 // 실패시 상태
 const error = error => ({
-  loading: false,
+  isLoad: false,
   data: null,
   error: error,
+});
+
+const coinSuccess = data => ({
+  isLoad: true,
+  data: data.map(market => market.market),
+  error: null,
 });
 
 // 리듀서
@@ -47,7 +58,22 @@ function stockExchangeReducer(state, action) {
     case 'GET_MARKET_ERROR':
       return {
         ...state,
-        marekt: error(action.error),
+        market: error(action.error),
+      };
+    case 'GET_COIN':
+      return {
+        ...state,
+        coin: loadingState,
+      };
+    case 'GET_COIN_SUCCESS':
+      return {
+        ...state,
+        coin: coinSuccess(action.data),
+      };
+    case 'GET_COIN_ERROR':
+      return {
+        ...state,
+        coin: error(action.error),
       };
     default:
       throw new Error(`Unhandled action type ${action.type}`);
@@ -105,6 +131,23 @@ export async function getMarket(dispatch) {
     dispatch({
       type: 'GET_MARKET_ERROR',
       error: e,
+    });
+  }
+}
+
+export async function getCoin(state, dispatch) {
+  dispatch({
+    type: 'GET_COIN',
+  });
+  try {
+    const data = await state.market.data;
+    dispatch({
+      type: 'GET_COIN_SUCCESS',
+      data,
+    });
+  } catch (e) {
+    dispatch({
+      type: 'GET_COIN_ERROR',
     });
   }
 }
