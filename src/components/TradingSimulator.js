@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 import {
   getMarket,
-  useStockState,
-  useStockDispatch,
-} from '../context/StockExchangeContext';
+  useExchangeState,
+  useExchangeDispatch,
+} from '../context/ExchangeContext';
 
-function StockExchange() {
-  const state = useStockState();
-  const dispatch = useStockDispatch();
+function TradingSimulaor() {
+  const state = useExchangeState();
+  const dispatch = useExchangeDispatch();
   const { isLoad, error, data: markets } = state.market;
   const { data } = state.realtimeData;
-  console.log(data)
 
   useEffect(() => {
     getMarket(dispatch);
@@ -23,10 +22,15 @@ function StockExchange() {
   // console.log(state)
   return (
     <div>
-      {data && data.map(list => <div>{list.code}: {list.trade_price}</div>)}
+      {data &&
+        data.map(list => (
+          <div>
+            {list.code}: {list.trade_price}
+          </div>
+        ))}
       {/* {markets && markets.map(market => <div>{market.korean_name}</div>)} */}
     </div>
   );
 }
 
-export default StockExchange;
+export default TradingSimulaor;

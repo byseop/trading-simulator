@@ -1,12 +1,12 @@
 import React from 'react';
-import { StockExchangeProvider } from './context/StockExchangeContext';
-import StockExchange from './components/StockExchange';
+import { ExchangeProvider } from './context/ExchangeContext';
+import Exchange from './pages/Exchange';
 
 function App() {
   return (
-    <StockExchangeProvider>
-      <StockExchange />
-    </StockExchangeProvider>
+    <ExchangeProvider>
+      <Exchange />
+    </ExchangeProvider>
   )
 }
 

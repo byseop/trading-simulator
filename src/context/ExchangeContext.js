@@ -59,7 +59,7 @@ const saveRealtimeData = (realtimeData, data) => ({
 });
 
 // 리듀서
-function stockExchangeReducer(state, action) {
+function ExchangeReducer(state, action) {
   switch (action.type) {
     case 'GET_MARKET':
       return {
@@ -97,32 +97,32 @@ function stockExchangeReducer(state, action) {
 }
 
 // 컨텍스트 분리
-const StockExchangeStateContext = createContext(null);
-const StockExchangeDispatchContext = createContext(null);
+const ExchangeStateContext = createContext(null);
+const ExchangeDispatchContext = createContext(null);
 
 // 위에서 선언한 두가지 컨텍스트를 Provider로 감싸준다.
-export function StockExchangeProvider({ children }) {
-  const [state, dispatch] = useReducer(stockExchangeReducer, initialState);
+export function ExchangeProvider({ children }) {
+  const [state, dispatch] = useReducer(ExchangeReducer, initialState);
   return (
-    <StockExchangeStateContext.Provider value={state}>
-      <StockExchangeDispatchContext.Provider value={dispatch}>
+    <ExchangeStateContext.Provider value={state}>
+      <ExchangeDispatchContext.Provider value={dispatch}>
         {children}
-      </StockExchangeDispatchContext.Provider>
-    </StockExchangeStateContext.Provider>
+      </ExchangeDispatchContext.Provider>
+    </ExchangeStateContext.Provider>
   );
 }
 
 // Hook: 조회를 쉽게
-export function useStockState() {
-  const state = useContext(StockExchangeStateContext);
+export function useExchangeState() {
+  const state = useContext(ExchangeStateContext);
   if (!state) {
     throw new Error('Cannot find Stock Provider');
   }
   return state;
 }
 
-export function useStockDispatch() {
-  const dispatch = useContext(StockExchangeDispatchContext);
+export function useExchangeDispatch() {
+  const dispatch = useContext(ExchangeDispatchContext);
   if (!dispatch) {
     throw new Error('Cannot find Stock Provider');
   }
