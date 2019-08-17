@@ -8,7 +8,7 @@ const initialState = {
     data: null,
     error: null,
   },
-  coin: {
+  realtimeData: {
     isLoad: false,
     data: null,
     error: null,
@@ -36,9 +36,25 @@ const error = error => ({
   error: error,
 });
 
-const coinSuccess = data => ({
-  isLoad: true,
-  data: data.map(market => market.market),
+// 실시간 정보 저장
+const saveRealtimeData = (realtimeData, data) => ({
+  isLoad: false,
+  data: (function() {
+    // console.log(realtimeData.data)
+    if (realtimeData.data) {
+      if (!realtimeData.data.map(list => list.code).includes(data.code)) {
+        return realtimeData.data.concat(data);
+      } else {
+        return realtimeData.data
+          .filter(list => list.code !== data.code)
+          .concat(data);
+      }
+    } else {
+      const tempArr = [];
+      realtimeData.data = tempArr.concat(data);
+      return realtimeData.data;
+    }
+  })(),
   error: null,
 });
 
@@ -60,20 +76,20 @@ function stockExchangeReducer(state, action) {
         ...state,
         market: error(action.error),
       };
-    case 'GET_COIN':
+    case 'GET_REALTIME_DATA':
       return {
         ...state,
-        coin: loadingState,
+        realtimeData: loadingState,
       };
-    case 'GET_COIN_SUCCESS':
+    case 'GET_REALTIME_DATA_SUCCESS':
       return {
         ...state,
-        coin: coinSuccess(action.data),
+        realtimeData: saveRealtimeData(state.realtimeData, action.data),
       };
-    case 'GET_COIN_ERROR':
+    case 'GET_REALTIME_DATA_ERROR':
       return {
         ...state,
-        coin: error(action.error),
+        realtimeData: error(action.error),
       };
     default:
       throw new Error(`Unhandled action type ${action.type}`);
@@ -126,28 +142,43 @@ export async function getMarket(dispatch) {
       type: 'GET_MARKET_SUCCESS',
       data: response.data,
     });
+
+    // 마켓 리스트를 추출하여 웹소켓 실행
+    const marketList = response.data.map(list => list.market);
+    const ws = new WebSocket('wss://api.upbit.com/websocket/v1');
+    ws.onopen = () => {
+      // 웹소켓 연결
+      dispatch({
+        type: 'GET_REALTIME_DATA',
+      });
+      ws.send(
+        `[{"ticket":"test"},{"type":"ticker","codes": ${JSON.stringify(
+          marketList,
+        )}}]`,
+      );
+    };
+    ws.onmessage = async e => {
+      // 실시간 데이터 수신
+      const { data } = e;
+      const text = await new Response(data).text();
+      // console.log(JSON.parse(text));
+      dispatch({
+        type: 'GET_REALTIME_DATA_SUCCESS',
+        data: JSON.parse(text),
+      });
+    };
+    ws.onerror = e => {
+      // 실시간 데이터 수신 에러
+      dispatch({
+        type: 'GET_REALTIME_DATA_ERROR',
+        error: e,
+      });
+    };
   } catch (e) {
     // 마켓 가져오기 실패
     dispatch({
       type: 'GET_MARKET_ERROR',
       error: e,
-    });
-  }
-}
-
-export async function getCoin(state, dispatch) {
-  dispatch({
-    type: 'GET_COIN',
-  });
-  try {
-    const data = await state.market.data;
-    dispatch({
-      type: 'GET_COIN_SUCCESS',
-      data,
-    });
-  } catch (e) {
-    dispatch({
-      type: 'GET_COIN_ERROR',
     });
   }
 }
