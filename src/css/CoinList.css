@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+.Coin__List {
+    background: #fff;
+    flex: 1;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-left: 1rem;
+    -moz-border-radius: 0.5rem;
+         border-radius: 0.5rem;
+    -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, .12);
+       -moz-box-shadow: 4px 4px 8px rgba(0, 0, 0, .12);
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, .12);
+}

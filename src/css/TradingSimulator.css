@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+.Trading__Simulator {
+    display: flex;
+    width: 1400px;
+    margin: 0 auto;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}

@@ -144,7 +144,9 @@ export async function getMarket(dispatch) {
     });
 
     // 마켓 리스트를 추출하여 웹소켓 실행
-    const marketList = response.data.map(list => list.market);
+    const marketList = response.data
+      .filter(list => !list.market.indexOf('KRW-'))
+      .map(list => list.market);
     const ws = new WebSocket('wss://api.upbit.com/websocket/v1');
     ws.onopen = () => {
       // 웹소켓 연결
