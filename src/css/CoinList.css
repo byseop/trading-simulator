@@ -2,6 +2,7 @@
 
 .Coin__List {
     background: #fff;
+    max-width: 390px;
     flex: 1;
     box-sizing: border-box;
     padding: 1rem;
@@ -11,4 +12,26 @@
     -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, .12);
        -moz-box-shadow: 4px 4px 8px rgba(0, 0, 0, .12);
             box-shadow: 4px 4px 8px rgba(0, 0, 0, .12);
+}
+
+.Coin__List .List__Head {
+     display: flex;
+     margin-bottom: 0.9rem;
+     text-align: center;
+}
+.Coin__List .List__Head span {
+     font-size: 0.75rem;
+     color: #a9a9a9;
+}
+.Coin__List .Coin__Name {
+     width: 110px;
+}
+.Coin__List .Coin__Price {
+     width: 110px;
+}
+.Coin__List .Coin__Change__Price {
+     flex: 1;
+}
+.Coin__List .Coin__Volume {
+     flex: 1;
 }

@@ -18,11 +18,32 @@ const CoinList = () => {
         ? -1
         : 0,
     );
-
+  console.log(sortedData)
   return (
     <div className="Coin__List">
+      <div className="List__Head">
+        <div className="Coin__Name">
+          <span>한글명</span>
+        </div>
+        <div className="Coin__Price">
+          <span>현재가</span>
+        </div>
+        <div className="Coin__Change__Price">
+          <span>전일대비</span>
+        </div>
+        <div className="Coin__Volume">
+          <span>거래대금</span>
+        </div>
+      </div>
       {sortedData &&
-        sortedData.map(data => <Coin key={data.code} data={data} />)}
+        sortedData.map(data => 
+          <Coin 
+            key={data.code} 
+            data={data} 
+            name={markets.filter(list => list.market === data.code)[0].korean_name} 
+          />
+        )
+      }
     </div>
   );
 };
