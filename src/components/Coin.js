@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useSummaryDispatch } from '../context/ExchangeContext';
 import '../css/Coin.css';
 
 const Coin = ({ data, name }) => {
-  console.log('rendered');
+  const dispatch = useSummaryDispatch();
+  const selectCoin = useCallback(() => {
+    dispatch({
+      type: 'SELECT_COIN',
+      name,
+      data
+    });
+  }, [data, dispatch, name]);
+
+  // console.log('rendered');
   const {
     code,
     trade_price,
@@ -20,7 +30,7 @@ const Coin = ({ data, name }) => {
     return '';
   };
   return (
-    <div className="Coin">
+    <div className="Coin" onClick={selectCoin}>
       <div className="Coin__Name">
         <p>{name}</p>
         <span>{code}</span>
@@ -33,7 +43,7 @@ const Coin = ({ data, name }) => {
         <span>{`${changeLiteral()} ${change_price.toLocaleString()}`}</span>
       </div>
       <div className="Coin__Volume">
-        <p>{(acc_trade_price_24h * 0.000001).toFixed(0)}백만</p>
+        <p>{(acc_trade_price_24h * 0.000001).toFixed(0).toLocaleString()}백만</p>
       </div>
     </div>
   );

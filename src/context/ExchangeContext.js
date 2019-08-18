@@ -15,6 +15,11 @@ const initialState = {
   },
 };
 
+const summaryState = {
+  name: null,
+  data: null,
+};
+
 // 로딩중 상태
 const loadingState = {
   isLoad: true,
@@ -96,10 +101,21 @@ function ExchangeReducer(state, action) {
   }
 }
 
+function summaryReducer(state, action) {
+  switch (action.type) {
+    case 'SELECT_COIN':
+      return {
+        name: action.name,
+        data: action.data,
+      }
+    default: 
+      throw new Error(`Unhandled action type ${action.type}`);
+  }
+}
+
 // 컨텍스트 분리
 const ExchangeStateContext = createContext(null);
 const ExchangeDispatchContext = createContext(null);
-
 // 위에서 선언한 두가지 컨텍스트를 Provider로 감싸준다.
 export function ExchangeProvider({ children }) {
   const [state, dispatch] = useReducer(ExchangeReducer, initialState);
@@ -109,6 +125,21 @@ export function ExchangeProvider({ children }) {
         {children}
       </ExchangeDispatchContext.Provider>
     </ExchangeStateContext.Provider>
+  );
+}
+
+
+// 선택 된 코인 컨텍스트
+const summaryStateContext = createContext(null);
+const summaryDispatchContext = createContext(null);
+export function SummaryProvider({ children }) {
+  const [state, dispatch] = useReducer(summaryReducer, summaryState);
+  return (
+    <summaryStateContext.Provider value={state}>
+      <summaryDispatchContext.Provider value={dispatch}>
+        {children}
+      </summaryDispatchContext.Provider>
+    </summaryStateContext.Provider>
   );
 }
 
@@ -125,6 +156,22 @@ export function useExchangeDispatch() {
   const dispatch = useContext(ExchangeDispatchContext);
   if (!dispatch) {
     throw new Error('Cannot find Stock Provider');
+  }
+  return dispatch;
+}
+
+export function useSummaryState() {
+  const state = useContext(summaryStateContext);
+  if (!state) {
+    throw new Error('Cannot find Summary Provider');
+  }
+  return state;
+}
+
+export function useSummaryDispatch() {
+  const dispatch = useContext(summaryDispatchContext);
+  if (!dispatch) {
+    throw new Error('Cannot find Summary Provider');
   }
   return dispatch;
 }

@@ -11,13 +11,7 @@ const CoinList = () => {
   // 거래량 순으로 정렬하기
   const sortedData =
     realtimeData &&
-    realtimeData.sort((a, b) =>
-      a.acc_trade_price_24h < b.acc_trade_price_24h
-        ? 1
-        : a.acc_trade_price_24h > b.acc_trade_price_24h
-          ? -1
-          : 0,
-    );
+    realtimeData.sort((a, b) => b.acc_trade_price_24h - a.acc_trade_price_24h);
   // console.log(sortedData);
   return (
     <div className="Coin__List">
