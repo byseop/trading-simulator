@@ -12,13 +12,13 @@ const CoinList = () => {
   const sortedData =
     realtimeData &&
     realtimeData.sort((a, b) =>
-      a.acc_trade_price < b.acc_trade_price
+      a.acc_trade_price_24h < b.acc_trade_price_24h
         ? 1
-        : a.acc_trade_price > b.acc_trade_price
-        ? -1
-        : 0,
+        : a.acc_trade_price_24h > b.acc_trade_price_24h
+          ? -1
+          : 0,
     );
-  console.log(sortedData)
+  // console.log(sortedData);
   return (
     <div className="Coin__List">
       <div className="List__Head">
@@ -36,14 +36,15 @@ const CoinList = () => {
         </div>
       </div>
       {sortedData &&
-        sortedData.map(data => 
-          <Coin 
-            key={data.code} 
-            data={data} 
-            name={markets.filter(list => list.market === data.code)[0].korean_name} 
+        sortedData.map(data => (
+          <Coin
+            key={data.code}
+            data={data}
+            name={
+              markets.filter(list => list.market === data.code)[0].korean_name
+            }
           />
-        )
-      }
+        ))}
     </div>
   );
 };

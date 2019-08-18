@@ -5,7 +5,7 @@
     max-width: 390px;
     flex: 1;
     box-sizing: border-box;
-    padding: 1rem;
+    padding: 1rem 0;
     margin-left: 1rem;
     -moz-border-radius: 0.5rem;
          border-radius: 0.5rem;
@@ -31,6 +31,7 @@
 }
 .Coin__List .Coin__Change__Price {
      flex: 1;
+     text-align: right;
 }
 .Coin__List .Coin__Volume {
      flex: 1;
