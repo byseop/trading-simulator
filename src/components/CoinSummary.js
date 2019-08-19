@@ -25,7 +25,7 @@ const CoinSummary = () => {
       high_price,
       low_price,
       acc_trade_price_24h,
-      acc_trade_volume_24h
+      acc_trade_volume_24h,
     } = data;
 
     return (
@@ -67,18 +67,34 @@ const CoinSummary = () => {
             <div className="Others">
               <div className="High__Low">
                 <p>
-                  고가<span>{parseInt(high_price.toFixed(0)).toLocaleString()}<em>{code.split('-')[0]}</em></span>
+                  고가
+                  <span>
+                    {parseInt(high_price.toFixed(0)).toLocaleString()}
+                    <em>{code.split('-')[0]}</em>
+                  </span>
                 </p>
                 <p>
-                  저가<span>{parseInt(low_price.toFixed(0)).toLocaleString()}<em>{code.split('-')[0]}</em></span>
+                  저가
+                  <span>
+                    {parseInt(low_price.toFixed(0)).toLocaleString()}
+                    <em>{code.split('-')[0]}</em>
+                  </span>
                 </p>
               </div>
               <div className="Volume">
                 <p>
-                  거래량(24H)<span>{parseInt(acc_trade_volume_24h.toFixed(0)).toLocaleString()}<em>{code.split('-')[1]}</em></span>
+                  거래량(24H)
+                  <span>
+                    {parseInt(acc_trade_volume_24h.toFixed(0)).toLocaleString()}
+                    <em>{code.split('-')[1]}</em>
+                  </span>
                 </p>
                 <p>
-                  거래대금(24H)<span>{parseInt(acc_trade_price_24h.toFixed(0)).toLocaleString()}<em>{code.split('-')[0]}</em></span>
+                  거래대금(24H)
+                  <span>
+                    {parseInt(acc_trade_price_24h.toFixed(0)).toLocaleString()}
+                    <em>{code.split('-')[0]}</em>
+                  </span>
                 </p>
               </div>
             </div>
