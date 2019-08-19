@@ -1,38 +1,56 @@
 @charset "utf-8";
 
 .Coin__List {
-    background: #fff;
-    max-width: 390px;
-    flex: 1;
-    box-sizing: border-box;
-    padding: 1rem 0;
-    margin-left: 1rem;
-    -moz-border-radius: 0.5rem;
-         border-radius: 0.5rem;
-    -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, .12);
-       -moz-box-shadow: 4px 4px 8px rgba(0, 0, 0, .12);
-            box-shadow: 4px 4px 8px rgba(0, 0, 0, .12);
+  background: #fff;
+  max-width: 390px;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+     -moz-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 1rem 0;
+  margin-left: 1rem;
+  -moz-border-radius: 0.5rem;
+  border-radius: 0.5rem;
+  -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.12);
 }
 
 .Coin__List .List__Head {
-     display: flex;
-     margin-bottom: 0.9rem;
-     text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 0.9rem;
+  text-align: center;
 }
 .Coin__List .List__Head span {
-     font-size: 0.75rem;
-     color: #a9a9a9;
+  font-size: 0.75rem;
+  color: #a9a9a9;
 }
 .Coin__List .Coin__Name {
-     width: 110px;
+  width: 100px;
 }
 .Coin__List .Coin__Price {
-     width: 110px;
+  width: 100px;
 }
 .Coin__List .Coin__Change__Price {
-     flex: 1;
-     text-align: right;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+     -moz-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: right;
 }
 .Coin__List .Coin__Volume {
-     flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+     -moz-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }

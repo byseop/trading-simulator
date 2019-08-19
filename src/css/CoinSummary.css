@@ -1,2 +1,81 @@
 @charset "utf-8";
 
+.Select__Coin__Loading {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Selected {
+}
+.Selected .Name {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #9d9d9d;
+}
+.Selected .Name h3 {
+    margin: 0;
+    font-size: 2rem;
+    padding-left: 2.5rem;
+    background-size: 1.8rem;
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+.Selected .Name h3 span {
+    font-size: 1rem;
+    margin-left: 0.8rem;
+}
+.Selected .Info {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+.Selected .Price h4 {
+    margin: 0;
+    font-size: 2rem;
+    color: #333;
+}
+.Selected .Price h4 span {
+    font-size: 1rem;
+    margin-left: 5px;
+    font-weight: 400;
+}
+.Selected .Change {
+    margin-top: 0.5rem;
+}
+.Selected .Change p {
+    margin: 0;
+}
+.Selected .Change p span {
+    margin: 0 5px;
+}
+.Selected .Change p span em {
+    font-size: 0.5rem;
+    font-style: normal;
+    margin-left: 3px;
+}
+.Selected .Others {
+    display: flex;
+}
+.Selected .Others p {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0.5em;
+    color: #333;
+}
+.Selected .Others p span {
+    display: inline-block;
+    margin-left: 20px;
+    font-weight: 500;
+}
+.Selected .Others p span em {
+    font-size: 0.5rem;
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 3px;
+}
+.Selected .Others > div:nth-child(n+2) {
+    padding-left: 30px;
+}

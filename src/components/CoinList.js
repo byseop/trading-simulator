@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import '../css/CoinList.css';
 import { useExchangeState } from '../context/ExchangeContext';
 import Coin from '../components/Coin';
@@ -9,10 +9,13 @@ const CoinList = () => {
   const { data: realtimeData } = state.realtimeData;
 
   // 거래량 순으로 정렬하기
-  const sortedData =
-    realtimeData &&
-    realtimeData.sort((a, b) => b.acc_trade_price_24h - a.acc_trade_price_24h);
-  // console.log(sortedData);
+  const sortedData = useCallback(() => {
+    return (
+      realtimeData &&
+      realtimeData.sort((a, b) => b.acc_trade_price_24h - a.acc_trade_price_24h)
+    );
+  }, [realtimeData]);
+  
   return (
     <div className="Coin__List">
       <div className="List__Head">
@@ -29,8 +32,8 @@ const CoinList = () => {
           <span>거래대금</span>
         </div>
       </div>
-      {sortedData &&
-        sortedData.map(data => (
+      {sortedData() &&
+        sortedData().map(data => (
           <Coin
             key={data.code}
             data={data}

@@ -8,7 +8,7 @@ const Coin = ({ data, name }) => {
     dispatch({
       type: 'SELECT_COIN',
       name,
-      data
+      data,
     });
   }, [data, dispatch, name]);
 
@@ -21,14 +21,16 @@ const Coin = ({ data, name }) => {
     change,
     change_price,
   } = data;
-  const changeLiteral = () => {
+  
+  const changeLiteral = useCallback(() => {
     if (change === 'RISE') {
       return '+';
     } else if (change === 'FALL') {
       return '-';
     }
     return '';
-  };
+  }, [change]);
+
   return (
     <div className="Coin" onClick={selectCoin}>
       <div className="Coin__Name">
@@ -43,7 +45,7 @@ const Coin = ({ data, name }) => {
         <span>{`${changeLiteral()} ${change_price.toLocaleString()}`}</span>
       </div>
       <div className="Coin__Volume">
-        <p>{(acc_trade_price_24h * 0.000001).toFixed(0).toLocaleString()}백만</p>
+        <p>{parseInt((acc_trade_price_24h * 0.000001).toFixed(0)).toLocaleString()}백만</p>
       </div>
     </div>
   );
