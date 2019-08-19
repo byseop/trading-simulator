@@ -6,14 +6,20 @@ const CoinSummary = () => {
   const state = useSummaryState();
   const { name, data } = state;
 
-  const changeLiteral = useCallback(() => {
-    if (data && data.change === 'RISE') {
+  const changeLiteral = useCallback(change => {
+    // 가격변동 +, - 함수
+    if (change === 'RISE') {
       return '+';
-    } else if (data && data.change === 'FALL') {
+    } else if (change === 'FALL') {
       return '-';
     }
     return '';
-  }, [data]);
+  }, []);
+
+  const fixPrice = useCallback(price => {
+    // 가격 단위 조정 함수
+    return parseInt(price.toFixed(0)).toLocaleString();
+  }, []);
 
   if (data) {
     const {
@@ -53,11 +59,11 @@ const CoinSummary = () => {
                 <p>
                   전일대비:{' '}
                   <span>
-                    {changeLiteral()}
+                    {changeLiteral(change)}
                     {(change_rate * 100).toFixed(2)}%
                   </span>
                   <span>
-                    {changeLiteral()}
+                    {changeLiteral(change)}
                     {change_price.toLocaleString()}
                     <em>{code.split('-')[0]}</em>
                   </span>
@@ -69,14 +75,14 @@ const CoinSummary = () => {
                 <p>
                   고가
                   <span>
-                    {parseInt(high_price.toFixed(0)).toLocaleString()}
+                    {fixPrice(high_price)}
                     <em>{code.split('-')[0]}</em>
                   </span>
                 </p>
                 <p>
                   저가
                   <span>
-                    {parseInt(low_price.toFixed(0)).toLocaleString()}
+                    {fixPrice(low_price)}
                     <em>{code.split('-')[0]}</em>
                   </span>
                 </p>
@@ -85,14 +91,14 @@ const CoinSummary = () => {
                 <p>
                   거래량(24H)
                   <span>
-                    {parseInt(acc_trade_volume_24h.toFixed(0)).toLocaleString()}
+                    {fixPrice(acc_trade_volume_24h)}
                     <em>{code.split('-')[1]}</em>
                   </span>
                 </p>
                 <p>
                   거래대금(24H)
                   <span>
-                    {parseInt(acc_trade_price_24h.toFixed(0)).toLocaleString()}
+                    {fixPrice(acc_trade_price_24h)}
                     <em>{code.split('-')[0]}</em>
                   </span>
                 </p>

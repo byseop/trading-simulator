@@ -21,15 +21,20 @@ const Coin = ({ data, name }) => {
     change,
     change_price,
   } = data;
-  
-  const changeLiteral = useCallback(() => {
+
+  const changeLiteral = useCallback(change => {
     if (change === 'RISE') {
       return '+';
     } else if (change === 'FALL') {
       return '-';
     }
     return '';
-  }, [change]);
+  }, []);
+
+  const fixPrice = useCallback(price => {
+    // 가격 단위 조정 함수
+    return parseInt(price.toFixed(0)).toLocaleString();
+  }, []);
 
   return (
     <div className="Coin" onClick={selectCoin}>
@@ -41,11 +46,18 @@ const Coin = ({ data, name }) => {
         <p>{trade_price.toLocaleString()}</p>
       </div>
       <div className={`Coin__Change__Price ${change}`}>
-        <p>{`${changeLiteral()} ${(change_rate * 100).toFixed(2)}%`}</p>
-        <span>{`${changeLiteral()} ${change_price.toLocaleString()}`}</span>
+        <p>{`${changeLiteral(change)} ${(change_rate * 100).toFixed(2)}%`}</p>
+        <span>{`${changeLiteral(
+          change,
+        )} ${fixPrice(change_price)}`}</span>
       </div>
       <div className="Coin__Volume">
-        <p>{parseInt((acc_trade_price_24h * 0.000001).toFixed(0)).toLocaleString()}백만</p>
+        <p>
+          {parseInt(
+            (acc_trade_price_24h * 0.000001).toFixed(0),
+          ).toLocaleString()}
+          백만
+        </p>
       </div>
     </div>
   );
