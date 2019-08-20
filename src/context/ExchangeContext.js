@@ -16,8 +16,8 @@ const initialState = {
 };
 
 const summaryState = {
+  code: null,
   name: null,
-  data: null,
 };
 
 // 로딩중 상태
@@ -105,10 +105,10 @@ function summaryReducer(state, action) {
   switch (action.type) {
     case 'SELECT_COIN':
       return {
+        code: action.code,
         name: action.name,
-        data: action.data,
-      }
-    default: 
+      };
+    default:
       throw new Error(`Unhandled action type ${action.type}`);
   }
 }
@@ -127,7 +127,6 @@ export function ExchangeProvider({ children }) {
     </ExchangeStateContext.Provider>
   );
 }
-
 
 // 선택 된 코인 컨텍스트
 const summaryStateContext = createContext(null);

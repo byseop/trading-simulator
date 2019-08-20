@@ -1,10 +1,38 @@
 import React, { useCallback } from 'react';
 import '../css/CoinSummary.css';
-import { useSummaryState } from '../context/ExchangeContext';
+import {
+  useSummaryState,
+  useSummaryDispatch,
+  useExchangeState,
+} from '../context/ExchangeContext';
 
 const CoinSummary = () => {
   const state = useSummaryState();
-  const { name, data } = state;
+  const dispatch = useSummaryDispatch();
+  const exchangeState = useExchangeState();
+  const { code, name } = state;
+  const { market } = exchangeState;
+  const { data: realtimeData } = exchangeState.realtimeData;
+
+  const getData = useCallback(() => {
+    // 선택된 데이터를 추출하는 함수
+    if (code) {
+      return realtimeData.filter(list => list.code === code)[0];
+    } else {      // return market && realtimeData && realtimeData.filter(list => list.code === market.data[0].market)[0];
+      return (
+        market &&
+        realtimeData &&
+        dispatch({
+          type: 'SELECT_COIN',
+          code: market.data[0].market,
+          name: market.data[0].korean_name,
+        })
+      );
+    }
+  }, [code, dispatch, market, realtimeData]);
+  const data = getData();
+
+  // console.log('rendered')
 
   const changeLiteral = useCallback(change => {
     // 가격변동 +, - 함수
@@ -109,7 +137,7 @@ const CoinSummary = () => {
       </div>
     );
   }
-  return <div className="Select__Coin__Loading">오른쪽에서 선택해주세요.</div>;
+  return <div className="Select__Coin__Loading">로딩중...</div>;
 };
 
 export default React.memo(CoinSummary);

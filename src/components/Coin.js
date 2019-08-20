@@ -7,12 +7,12 @@ const Coin = ({ data, name }) => {
   const selectCoin = useCallback(() => {
     dispatch({
       type: 'SELECT_COIN',
-      name,
-      data,
+      code: data.code,
+      name
     });
-  }, [data, dispatch, name]);
+  }, [data.code, dispatch, name]);
 
-  // console.log('rendered');
+  // console.log('rendered coin');
   const {
     code,
     trade_price,
