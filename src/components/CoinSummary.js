@@ -1,16 +1,13 @@
 import React, { useCallback } from 'react';
 import '../css/CoinSummary.css';
 import {
-  useSummaryState,
   useSummaryDispatch,
   useExchangeState,
 } from '../context/ExchangeContext';
 
-const CoinSummary = () => {
-  const state = useSummaryState();
+const CoinSummary = ({ code, name }) => {
   const dispatch = useSummaryDispatch();
   const exchangeState = useExchangeState();
-  const { code, name } = state;
   const { market } = exchangeState;
   const { data: realtimeData } = exchangeState.realtimeData;
 

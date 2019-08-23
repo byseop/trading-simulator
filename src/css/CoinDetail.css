@@ -1,10 +1,11 @@
 @charset "utf-8";
 
 .Coin__Detail {
-    width: 990px;
-    height: 1000px;
+    width: 960px;
+    height: calc(100vh - 4rem);
     background: #fff;
     border-radius: 0.5rem;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, .12);
     padding: 1rem;
+    box-sizing: border-box;
 }

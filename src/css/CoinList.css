@@ -1,23 +1,11 @@
 @charset "utf-8";
 
 .Coin__List {
-  background: #fff;
-  max-width: 390px;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-     -moz-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 1rem 0;
-  margin-left: 1rem;
-  -moz-border-radius: 0.5rem;
-  border-radius: 0.5rem;
-  -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.12);
-  -moz-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.12);
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.12);
+  height: calc(100% - 24px);
+}
+.Coins {
+  height: calc(100% - 50px);
+  overflow: auto;
 }
 
 .Coin__List .List__Head {
@@ -26,7 +14,7 @@
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 0.9rem;
+  padding: 0.8rem 0;
   text-align: center;
 }
 .Coin__List .List__Head span {
@@ -53,4 +41,26 @@
      -moz-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+}
+
+
+.Coins::-webkit-scrollbar {
+  width: 5px;  /* 세로축 스크롤바 길이 */
+  height: 5px;  /* 가로축 스크롤바 길이 */
+}
+.Coins::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.Coins::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+}
+.Coins::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #d9d9d9;
+}
+.Coins::-webkit-scrollbar-button:start {
+  background-color: transparent; /* Top, Left 방향의 이동버튼 */
+}
+.Coins::-webkit-scrollbar-button:end {
+  background-color: transparent; /* Bottom, Right 방향의 이동버튼 */
 }

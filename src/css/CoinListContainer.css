@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+.Coin__List__Container {
+    max-width: 430px;
+    height: calc(100vh - 4rem);
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-left: 1rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, .12);
+    padding: 1rem 0;
+}
+
+.Listing__Method {
+    display: flex;
+    justify-content: center;
+}
+.Listing__Method .Method {
+    margin-left: 1.5rem;
+}
+.Listing__Method .Method:first-child {
+    margin-left: 0;
+}
+.Listing__Method .Method p {
+    margin: 0;
+    font-weight: 500;
+    cursor: pointer;
+    color: #b9b9b9;
+}
+.Listing__Method .Method p.on {
+    color: #333;
+}

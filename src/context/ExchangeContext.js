@@ -1,6 +1,7 @@
 import React, { createContext, useReducer, useContext } from 'react';
 import axios from 'axios';
 
+/// 실시간 정보
 // StockExchange 에서 사용 할 기본상태
 const initialState = {
   market: {
@@ -13,11 +14,6 @@ const initialState = {
     data: null,
     error: null,
   },
-};
-
-const summaryState = {
-  code: null,
-  name: null,
 };
 
 // 로딩중 상태
@@ -101,18 +97,6 @@ function ExchangeReducer(state, action) {
   }
 }
 
-function summaryReducer(state, action) {
-  switch (action.type) {
-    case 'SELECT_COIN':
-      return {
-        code: action.code,
-        name: action.name,
-      };
-    default:
-      throw new Error(`Unhandled action type ${action.type}`);
-  }
-}
-
 // 컨텍스트 분리
 const ExchangeStateContext = createContext(null);
 const ExchangeDispatchContext = createContext(null);
@@ -125,20 +109,6 @@ export function ExchangeProvider({ children }) {
         {children}
       </ExchangeDispatchContext.Provider>
     </ExchangeStateContext.Provider>
-  );
-}
-
-// 선택 된 코인 컨텍스트
-const summaryStateContext = createContext(null);
-const summaryDispatchContext = createContext(null);
-export function SummaryProvider({ children }) {
-  const [state, dispatch] = useReducer(summaryReducer, summaryState);
-  return (
-    <summaryStateContext.Provider value={state}>
-      <summaryDispatchContext.Provider value={dispatch}>
-        {children}
-      </summaryDispatchContext.Provider>
-    </summaryStateContext.Provider>
   );
 }
 
@@ -159,6 +129,42 @@ export function useExchangeDispatch() {
   return dispatch;
 }
 
+
+
+
+
+/// 요약정보
+const summaryState = {
+  code: null,
+  name: null,
+};
+
+function summaryReducer(state, action) {
+  switch (action.type) {
+    case 'SELECT_COIN':
+      return {
+        code: action.code,
+        name: action.name,
+      };
+    default:
+      throw new Error(`Unhandled action type ${action.type}`);
+  }
+}
+
+// 선택 된 코인 컨텍스트
+const summaryStateContext = createContext(null);
+const summaryDispatchContext = createContext(null);
+export function SummaryProvider({ children }) {
+  const [state, dispatch] = useReducer(summaryReducer, summaryState);
+  return (
+    <summaryStateContext.Provider value={state}>
+      <summaryDispatchContext.Provider value={dispatch}>
+        {children}
+      </summaryDispatchContext.Provider>
+    </summaryStateContext.Provider>
+  );
+}
+
 export function useSummaryState() {
   const state = useContext(summaryStateContext);
   if (!state) {
@@ -175,8 +181,71 @@ export function useSummaryDispatch() {
   return dispatch;
 }
 
+
+
+
+
+
+
+/// 유저 정보
+// 유저 기본정보
+const userData = {
+  cash: null,
+  coin: null,
+};
+
+// 유저 리듀서
+function userReducer(state, action) {
+  switch (action.type) {
+    case 'USER_REGISTER':
+      return {
+        ...state,
+        cash: action.data.cash,
+      };
+    default:
+      throw new Error(`Unhandled action type ${action.type}`);
+  }
+}
+
+// 유저 컨텍스트
+const userStateContext = createContext(null);
+const userDispatchContext = createContext(null);
+export function UserProvider({ children }) {
+  const [state, dispatch] = useReducer(userReducer, userData);
+  return (
+    <userStateContext.Provider value={state}>
+      <userDispatchContext.Provider value={dispatch}>
+        {children}
+      </userDispatchContext.Provider>
+    </userStateContext.Provider>
+  );
+}
+
+// Hook: 유저 컨텍스트
+export function useUserState() {
+  const state = useContext(userStateContext);
+  if (!state) {
+    throw new Error('Cannot find User Provider');
+  }
+  return state;
+}
+
+export function useUserDispatch() {
+  const dispatch = useContext(userDispatchContext);
+  if (!dispatch) {
+    throw new Error('Cannot find User Provider');
+  }
+  return dispatch;
+}
+
+
+
+
+
+
+/// 그 외 함수
 export async function getMarket(dispatch) {
-  // 마켓 목록을 가져오는 함수
+  // 실시간 시세 조회 함수
   dispatch({
     // 마켓 가져오기 시작
     type: 'GET_MARKET',

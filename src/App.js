@@ -1,12 +1,14 @@
 import React from 'react';
-import { ExchangeProvider, SummaryProvider } from './context/ExchangeContext';
+import { ExchangeProvider, SummaryProvider, UserProvider } from './context/ExchangeContext';
 import Exchange from './pages/Exchange';
 
 function App() {
   return (
     <ExchangeProvider>
       <SummaryProvider>
-        <Exchange />
+        <UserProvider>
+          <Exchange />
+        </UserProvider>
       </SummaryProvider>
     </ExchangeProvider>
   )

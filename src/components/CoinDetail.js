@@ -1,11 +1,16 @@
 import React from 'react';
 import '../css/CoinDetail.css';
+import { useSummaryState } from '../context/ExchangeContext';
 import CoinSummary from './CoinSummary';
+import MyAccount from './MyAccount';
 
 const CoinDetail = () => {
+  const state = useSummaryState();
+  const { code, name } = state;
   return (
     <div className="Coin__Detail">
-      <CoinSummary />
+      <CoinSummary code={code} name={name} />
+      <MyAccount code={code} />
     </div>
   );
 };
