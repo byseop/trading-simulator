@@ -3,7 +3,6 @@ import {
   getMarket,
   useExchangeDispatch,
   useUserDispatch,
-  useUserState
 } from '../context/ExchangeContext';
 import CoinDetail from './CoinDetail';
 import CoinListContainer from './CoinListContainer';
@@ -11,8 +10,6 @@ import '../css/TradingSimulator.css';
 
 function TradingSimulaor() {
   const dispatch = useExchangeDispatch();
-
-  const userState = useUserState();
   const userDispatch = useUserDispatch();
 
   // 처음 거래소 오픈시 유저정보 등록.
@@ -26,12 +23,9 @@ function TradingSimulaor() {
     });
   }, [userDispatch]);
 
-  console.log(userState);
-
   useEffect(() => {
     getMarket(dispatch);
   }, [dispatch]);
-
   return (
     <div className="Trading__Simulator">
       <CoinDetail />
