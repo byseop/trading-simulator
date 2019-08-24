@@ -5,10 +5,13 @@ import { useOrderbookDispatch, getOrderbook } from '../context/ExchangeContext';
 const OrderContainer = ({ code }) => {
   const dispatch = useOrderbookDispatch();
   useEffect(() => {
-    getOrderbook.wsopen(dispatch, code)
-  }, [code, dispatch])
+    getOrderbook.wsopen(dispatch, code);
+    return () => {
+      getOrderbook.wsclose(dispatch);
+    }
+  }, [code, dispatch]);
 
-  return <Order />
-}
+  return <Order />;
+};
 
 export default OrderContainer;

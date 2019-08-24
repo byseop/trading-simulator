@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+.Orderbook__Wrap {
+    margin-top: 1rem;
+    display: flex;
+}
+.Orderbook {
+    flex: 1;
+    height: 400px;
+    overflow: auto;
+
+}
+.Order__Form {
+    flex: 1;
+}
+
+.Orderbook__List {
+    display: flex;
+    padding: 1rem 0;
+    border-bottom: 1px solid #d9d9d9;
+}
+.Orderbook__List > div {
+    width: 33.33%;
+}
+.Orderbook__List p {
+    margin: 0;
+    font-size: 1rem;
+    text-align: right;
+    padding-right: 20px;
+    font-weight: 500;
+}
+.Orderbook__List p span {
+    font-size: 0.5em;
+    margin-left: 5px;
+    font-weight: 400;
+}
+
+.Orderbook::-webkit-scrollbar {
+    width: 5px;  /* 세로축 스크롤바 길이 */
+    height: 5px;  /* 가로축 스크롤바 길이 */
+}
+.Orderbook::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+.Orderbook::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+}
+.Orderbook::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #d9d9d9;
+}
+.Orderbook::-webkit-scrollbar-button:start {
+    background-color: transparent; /* Top, Left 방향의 이동버튼 */
+}
+.Orderbook::-webkit-scrollbar-button:end {
+    background-color: transparent; /* Bottom, Right 방향의 이동버튼 */
+}

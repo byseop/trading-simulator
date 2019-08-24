@@ -391,9 +391,6 @@ const getOrderbook = (function() {
           type: 'CLOSE_ORDERBOOK',
         });
         ws.close();
-        ws.onclose(() => {
-          ws = null;
-        });
       }
     },
   };
