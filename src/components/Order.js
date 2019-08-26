@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Orderbook from './Orderbook'
+import Trade from './Trade';
 import '../css/Order.css';
 
 const Order = () => {
-  const [orderType, setOrderType] = useState('ASK');
   return (
-    <div className="Order__Box Section">
-      <div className="Order__Head">
-        <div className="Order__Type">
-          <p className={orderType === 'ASK' ? 'on' : null} onClick={() => setOrderType('ASK')}>매수</p>
-        </div>
-        <div className="Order__Type">
-          <p className={orderType === 'BID' ? 'on' : null} onClick={() => setOrderType('BID')}>매도</p>
+    <>
+      <div className="Order__Box Section">
+        <div className="Order__Inner">
+          <Orderbook />
+          <Trade />
         </div>
       </div>
-      <Orderbook orderType={orderType} />
-    </div>
+    </>
   );
 };
 

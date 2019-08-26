@@ -1,9 +1,4 @@
 @charset "utf-8";
-
-.Orderbook__Wrap {
-    margin-top: 1rem;
-    display: flex;
-}
 .Orderbook {
     flex: 1;
     height: 400px;
@@ -54,4 +49,17 @@
 }
 .Orderbook::-webkit-scrollbar-button:end {
     background-color: transparent; /* Bottom, Right 방향의 이동버튼 */
+}
+
+.Orderbook__Head {
+    display: flex;
+    padding: 0 0 1em;
+}
+.Orderbook__Head .Orderbook__Div {
+    flex: 1;
+}
+.Orderbook__Head .Orderbook__Div p {
+    margin: 0;
+    text-align: center;
+    font-size: 0.8rem;
 }

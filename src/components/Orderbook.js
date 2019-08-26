@@ -3,15 +3,26 @@ import { useOrderbookState } from '../context/ExchangeContext';
 import OrderbookList from './OrderbookList';
 import '../css/Orderbook.css';
 
-const Orderbook = ({ orderType }) => {
+const Orderbook = () => {
   const state = useOrderbookState();
   const { data } = state;
   const orderbook_units = data !== null && data.orderbook_units;
-  return (
-    <div className="Orderbook__Wrap">
-      <div className="Orderbook">
-        {orderbook_units &&
-          orderbook_units.reverse().map(list => (
+  if (orderbook_units) {
+    return (
+      <div className="Orderbook__Wrap">
+        <div className="Orderbook__Head">
+          <div className="Orderbook__Div">
+            <p>매수량</p>
+          </div>
+          <div className="Orderbook__Div">
+            <p>가격</p>
+          </div>
+          <div className="Orderbook__Div">
+            <p>매도량</p>
+          </div>
+        </div>
+        <div className="Orderbook">
+          {orderbook_units.reverse().map(list => (
             <OrderbookList
               ask_price={list.ask_price}
               ask_size={list.ask_size}
@@ -19,8 +30,7 @@ const Orderbook = ({ orderType }) => {
               code={data.code}
             />
           ))}
-        {orderbook_units &&
-          orderbook_units.reverse().map(list => (
+          {orderbook_units.reverse().map(list => (
             <OrderbookList
               bid_price={list.ask_price}
               bid_size={list.bid_size}
@@ -28,10 +38,16 @@ const Orderbook = ({ orderType }) => {
               code={data.code}
             />
           ))}
+        </div>
+        <div className="Order__Form" />
       </div>
-      <div className="Order__Form" />
+    );
+  }
+  return (
+    <div className="Orderbook__Wrap">
+      로딩중...
     </div>
-  );
+  )
 };
 
 export default React.memo(Orderbook);
