@@ -8,10 +8,10 @@ const OrderContainer = ({ code }) => {
     getOrderbook.wsopen(dispatch, code);
     return () => {
       getOrderbook.wsclose(dispatch);
-    }
+    };
   }, [code, dispatch]);
 
-  return <Order />;
+  return <Order code={code} />;
 };
 
 export default OrderContainer;

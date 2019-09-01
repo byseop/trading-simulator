@@ -15,7 +15,7 @@ const CoinSummary = ({ code, name }) => {
     // 선택된 데이터를 추출하는 함수
     if (code) {
       return realtimeData.filter(list => list.code === code)[0];
-    } else {      // return market && realtimeData && realtimeData.filter(list => list.code === market.data[0].market)[0];
+    } else {
       return (
         market &&
         realtimeData &&

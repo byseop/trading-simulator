@@ -1,65 +1,65 @@
 @charset "utf-8";
 .Orderbook {
-    flex: 1;
-    height: 400px;
-    overflow: auto;
-
+  flex: 1;
+  height: 400px;
+  overflow: auto;
 }
 .Order__Form {
-    flex: 1;
+  flex: 1;
 }
 
 .Orderbook__List {
-    display: flex;
-    padding: 1rem 0;
-    border-bottom: 1px solid #d9d9d9;
+  display: flex;
+  padding: 1rem 0;
+  border-bottom: 1px solid #d9d9d9;
+  cursor: pointer;
 }
 .Orderbook__List > div {
-    width: 33.33%;
+  width: 33.33%;
 }
 .Orderbook__List p {
-    margin: 0;
-    font-size: 1rem;
-    text-align: right;
-    padding-right: 20px;
-    font-weight: 500;
+  margin: 0;
+  font-size: 1rem;
+  text-align: right;
+  padding-right: 20px;
+  font-weight: 500;
 }
 .Orderbook__List p span {
-    font-size: 0.5em;
-    margin-left: 5px;
-    font-weight: 400;
+  font-size: 0.5em;
+  margin-left: 5px;
+  font-weight: 400;
 }
 
 .Orderbook::-webkit-scrollbar {
-    width: 5px;  /* 세로축 스크롤바 길이 */
-    height: 5px;  /* 가로축 스크롤바 길이 */
+  width: 5px; /* 세로축 스크롤바 길이 */
+  height: 5px; /* 가로축 스크롤바 길이 */
 }
 .Orderbook::-webkit-scrollbar-track {
-    background-color: transparent;
+  background-color: transparent;
 }
 .Orderbook::-webkit-scrollbar-track-piece {
-    background-color: transparent;
+  background-color: transparent;
 }
 .Orderbook::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: #d9d9d9;
+  border-radius: 8px;
+  background-color: #d9d9d9;
 }
 .Orderbook::-webkit-scrollbar-button:start {
-    background-color: transparent; /* Top, Left 방향의 이동버튼 */
+  background-color: transparent; /* Top, Left 방향의 이동버튼 */
 }
 .Orderbook::-webkit-scrollbar-button:end {
-    background-color: transparent; /* Bottom, Right 방향의 이동버튼 */
+  background-color: transparent; /* Bottom, Right 방향의 이동버튼 */
 }
 
 .Orderbook__Head {
-    display: flex;
-    padding: 0 0 1em;
+  display: flex;
+  padding: 0 0 1em;
 }
 .Orderbook__Head .Orderbook__Div {
-    flex: 1;
+  flex: 1;
 }
 .Orderbook__Head .Orderbook__Div p {
-    margin: 0;
-    text-align: center;
-    font-size: 0.8rem;
+  margin: 0;
+  text-align: center;
+  font-size: 0.8rem;
 }
