@@ -56,7 +56,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
               numeralThousandsGroupStyle: 'thousand',
             }}
             value={inputPrice}
-            onChange={e => setInputPrice(e.target.value.replace(/\D/g, ''))}
+            onChange={e => setInputPrice(e.target.rawValue)}
           />
           <label>{fnCodeStr(0)}</label>
         </div>
@@ -72,7 +72,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
               numeralThousandsGroupStyle: 'thousand',
             }}
             value={inputVolume}
-            onChange={e => setInputVolume(e.target.value.replace(/\D/g, ''))}
+            onChange={e => setInputVolume(e.target.rawValue)}
           />
           <label>{fnCodeStr(1)}</label>
         </div>
