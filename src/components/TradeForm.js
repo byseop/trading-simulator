@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Cleave from 'cleave.js/react';
+import { useUserState, useUserDispatch } from '../context/ExchangeContext';
 
 const TradeForm = ({ type, orderbookData, code }) => {
   const typeToStr = useCallback(() => {
@@ -21,7 +22,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
 
   const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
-    setTotalPrice((inputPrice * inputVolume).toLocaleString());
+    setTotalPrice(inputPrice * inputVolume);
   }, [inputPrice, inputVolume]);
 
   const fnCodeStr = useCallback(
@@ -33,6 +34,32 @@ const TradeForm = ({ type, orderbookData, code }) => {
     [code],
   );
 
+  const userState = useUserState();
+  const userDispatch = useUserDispatch();
+
+  const { cash } = userState;
+  console.log(userState);
+  const trade = useCallback(() => {
+    if (type === 'ASK') {
+      userDispatch({
+        type: 'TRADE_ASK',
+        data: {
+          coin: {
+            totalPrice: totalPrice,
+            code: fnCodeStr(1),
+            volume: inputVolume,
+          },
+        },
+      });
+    } else if (type === 'BID') {
+      userDispatch({
+        type: 'TRADE_BID',
+      });
+    } else throw new Error(`Unhandled trade type ${type}`);
+    setInputPrice(0);
+    setInputVolume(0);
+  }, [userDispatch, type, totalPrice, inputVolume, fnCodeStr]);
+
   return (
     <div className="Trade__Form">
       <div className="Form__List">
@@ -41,7 +68,8 @@ const TradeForm = ({ type, orderbookData, code }) => {
         </div>
         <div className="Form__Des">
           <p>
-            10,000,000<span>{fnCodeStr(0)}</span>
+            {cash && cash.toLocaleString()}
+            <span>{fnCodeStr(0)}</span>
           </p>
         </div>
       </div>
@@ -56,7 +84,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
               numeralThousandsGroupStyle: 'thousand',
             }}
             value={inputPrice}
-            onChange={e => setInputPrice(e.target.rawValue)}
+            onChange={e => setInputPrice(Number(e.target.rawValue))}
           />
           <label>{fnCodeStr(0)}</label>
         </div>
@@ -72,7 +100,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
               numeralThousandsGroupStyle: 'thousand',
             }}
             value={inputVolume}
-            onChange={e => setInputVolume(e.target.rawValue)}
+            onChange={e => setInputVolume(Number(e.target.rawValue))}
           />
           <label>{fnCodeStr(1)}</label>
         </div>
@@ -83,7 +111,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
         </div>
         <div className="Form__Des">
           <p>
-            {totalPrice}
+            {totalPrice.toLocaleString()}
             <span>{fnCodeStr(0)}</span>
           </p>
         </div>
@@ -92,6 +120,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
         <button
           type="submit"
           style={{ backgroundColor: type === 'ASK' ? '#f14f4f' : '#7878e3' }}
+          onClick={trade}
         >
           {typeToStr()}
         </button>

@@ -240,6 +240,28 @@ const userData = {
   coin: null,
 };
 
+// fn ASK
+const fnAsk = (coin, askCoin) => {
+  if (!coin) {
+    return [askCoin];
+  } else {
+    const exist = coin.filter(list => list.code === askCoin.code);
+    if (exist.length) {
+      return coin.map(list => {
+        if (list.code === askCoin.code) {
+          list.totalPrice += askCoin.totalPrice;
+          list.volume += askCoin.volume;
+          return list;
+        } else {
+          return list;
+        }
+      });
+    } else {
+      return coin.concat(askCoin);
+    }
+  }
+};
+
 // 유저 리듀서
 function userReducer(state, action) {
   switch (action.type) {
@@ -248,6 +270,17 @@ function userReducer(state, action) {
         ...state,
         cash: action.data.cash,
       };
+    case 'TRADE_ASK':
+      if (state.cash < action.data.coin.totalPrice) {
+        alert('보유 현금이 부족합니다.');
+        return { ...state };
+      } else {
+        return {
+          ...state,
+          cash: state.cash - action.data.coin.totalPrice,
+          coin: fnAsk(state.coin, action.data.coin),
+        };
+      }
     default:
       throw new Error(`Unhandled action type ${action.type}`);
   }
@@ -350,7 +383,7 @@ const getOrderbook = (function() {
     wsopen: (dispatch, code) => {
       try {
         // 변경 된 마켓코드 설정
-        const marketCode = code
+        const marketCode = code;
 
         // 웹소켓 생성
         ws = new WebSocket('wss://api.upbit.com/websocket/v1');
@@ -362,7 +395,7 @@ const getOrderbook = (function() {
             `[{"ticket":"UNIQUE_TICKET"},{"type":"orderbook","codes":["${marketCode}"]}]`,
           );
         };
-        
+
         // 실시간 호가 수신
         ws.onmessage = async e => {
           const { data } = e;
