@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/trading-simulator/static/css/main.8087b185.chunk.css",
-    "main.js": "/trading-simulator/static/js/main.b0c7c9ba.chunk.js",
-    "main.js.map": "/trading-simulator/static/js/main.b0c7c9ba.chunk.js.map",
+    "main.js": "/trading-simulator/static/js/main.530c595a.chunk.js",
+    "main.js.map": "/trading-simulator/static/js/main.530c595a.chunk.js.map",
     "runtime~main.js": "/trading-simulator/static/js/runtime~main.7c291c81.js",
     "runtime~main.js.map": "/trading-simulator/static/js/runtime~main.7c291c81.js.map",
     "static/js/2.f419fbe8.chunk.js": "/trading-simulator/static/js/2.f419fbe8.chunk.js",
     "static/js/2.f419fbe8.chunk.js.map": "/trading-simulator/static/js/2.f419fbe8.chunk.js.map",
     "index.html": "/trading-simulator/index.html",
-    "precache-manifest.3534ec42391b41cfdafb7e0f42ed5956.js": "/trading-simulator/precache-manifest.3534ec42391b41cfdafb7e0f42ed5956.js",
+    "precache-manifest.271e39f9cd674ee8b16054a3eb08caa9.js": "/trading-simulator/precache-manifest.271e39f9cd674ee8b16054a3eb08caa9.js",
     "service-worker.js": "/trading-simulator/service-worker.js",
     "static/css/main.8087b185.chunk.css.map": "/trading-simulator/static/css/main.8087b185.chunk.css.map"
   }
