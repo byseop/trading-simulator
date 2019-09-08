@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/byseop/trading-simulator/static/css/main.8087b185.chunk.css",
-    "main.js": "/byseop/trading-simulator/static/js/main.f7469555.chunk.js",
-    "main.js.map": "/byseop/trading-simulator/static/js/main.f7469555.chunk.js.map",
-    "runtime~main.js": "/byseop/trading-simulator/static/js/runtime~main.d00bd1a9.js",
-    "runtime~main.js.map": "/byseop/trading-simulator/static/js/runtime~main.d00bd1a9.js.map",
-    "static/js/2.f419fbe8.chunk.js": "/byseop/trading-simulator/static/js/2.f419fbe8.chunk.js",
-    "static/js/2.f419fbe8.chunk.js.map": "/byseop/trading-simulator/static/js/2.f419fbe8.chunk.js.map",
-    "index.html": "/byseop/trading-simulator/index.html",
-    "precache-manifest.0e720a90496657f437faca60751a8c16.js": "/byseop/trading-simulator/precache-manifest.0e720a90496657f437faca60751a8c16.js",
-    "service-worker.js": "/byseop/trading-simulator/service-worker.js",
-    "static/css/main.8087b185.chunk.css.map": "/byseop/trading-simulator/static/css/main.8087b185.chunk.css.map"
+    "main.css": "/trading-simulaotr/static/css/main.8087b185.chunk.css",
+    "main.js": "/trading-simulaotr/static/js/main.de19ccaf.chunk.js",
+    "main.js.map": "/trading-simulaotr/static/js/main.de19ccaf.chunk.js.map",
+    "runtime~main.js": "/trading-simulaotr/static/js/runtime~main.ea46f0ff.js",
+    "runtime~main.js.map": "/trading-simulaotr/static/js/runtime~main.ea46f0ff.js.map",
+    "static/js/2.f419fbe8.chunk.js": "/trading-simulaotr/static/js/2.f419fbe8.chunk.js",
+    "static/js/2.f419fbe8.chunk.js.map": "/trading-simulaotr/static/js/2.f419fbe8.chunk.js.map",
+    "index.html": "/trading-simulaotr/index.html",
+    "precache-manifest.77457ad1235edbb70f96408be3058e81.js": "/trading-simulaotr/precache-manifest.77457ad1235edbb70f96408be3058e81.js",
+    "service-worker.js": "/trading-simulaotr/service-worker.js",
+    "static/css/main.8087b185.chunk.css.map": "/trading-simulaotr/static/css/main.8087b185.chunk.css.map"
   }
 }
