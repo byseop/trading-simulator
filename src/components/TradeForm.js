@@ -54,6 +54,13 @@ const TradeForm = ({ type, orderbookData, code }) => {
     } else if (type === 'BID') {
       userDispatch({
         type: 'TRADE_BID',
+        data: {
+          coin: {
+            totalPrice: totalPrice,
+            code: fnCodeStr(1),
+            volume: inputVolume,
+          },
+        },
       });
     } else throw new Error(`Unhandled trade type ${type}`);
     setInputPrice(0);

@@ -262,6 +262,46 @@ const fnAsk = (coin, askCoin) => {
   }
 };
 
+// fn BID
+const fnBid = (state, bidCoin) => {
+  const holdingCoin =
+    state.coin && state.coin.filter(list => list.code === bidCoin.code)[0];
+
+  if (holdingCoin) {
+    if (holdingCoin.volume < bidCoin.volume) {
+      alert(`보유중인 ${bidCoin.code}이(가) 요청 수량보다 적습니다.`);
+      return {
+        cash: state.cash,
+        coin: state.coin,
+      };
+    } else {
+      return {
+        cash: (state.cash += bidCoin.totalPrice),
+        coin: state.coin.map(list => {
+          if (list.code === holdingCoin.code) {
+            if (list.totalPrice !== holdingCoin.totalPrice) {
+              list.totalPrice -= holdingCoin.totalPrice;
+              list.volume -= holdingCoin.volume;
+            } else {
+              list.totalPrice = 0;
+              list.volume = 0;
+            }
+            return list;
+          } else {
+            return list;
+          }
+        }),
+      };
+    }
+  } else {
+    alert(`보유중인 ${bidCoin.code}이(가) 없습니다.`);
+    return {
+      cash: state.cash,
+      coin: null,
+    };
+  }
+};
+
 // 유저 리듀서
 function userReducer(state, action) {
   switch (action.type) {
@@ -281,6 +321,8 @@ function userReducer(state, action) {
           coin: fnAsk(state.coin, action.data.coin),
         };
       }
+    case 'TRADE_BID':
+      return fnBid(state, action.data.coin);
     default:
       throw new Error(`Unhandled action type ${action.type}`);
   }
