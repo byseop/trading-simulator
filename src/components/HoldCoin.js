@@ -1,27 +1,39 @@
 import React from 'react';
 import '../css/Coin.css';
 
-const HoldCoin = () => {
+const HoldCoin = ({ data, name, realtimePrice }) => {
+  const { fullcode, totalPrice, volume } = data;
+  const average = parseFloat((totalPrice / data.volume).toFixed(2));
+  const earnReturn = ((realtimePrice - average) / realtimePrice) * 100;
+  const est = volume * realtimePrice;
   return (
     <div className="Hold__Coin Coin">
       <div className="Coin__Name">
-        <p>비트코인</p>
-        <span>KRW-BTC</span>
+        <p>{name}</p>
+        <span>{fullcode}</span>
       </div>
-      <div className="RISE">
-        <p>12,199,900</p>
+      <div
+        className={`Coin__Price ${
+          realtimePrice === average
+            ? ''
+            : realtimePrice > average
+            ? 'RISE'
+            : 'FALL'
+        }`}
+      >
+        <p>{est.toLocaleString()}</p>
       </div>
-      <div className="Coin__Change__Price">
-        <p>1%</p>
-        <span>+10,000</span>
+      <div
+        className={`Coin__Change__Price ${
+          earnReturn === 0 ? '' : earnReturn > 0 ? 'RISE' : 'FALL'
+        }`}
+      >
+        <p>{earnReturn.toFixed(2)}%</p>
       </div>
-      <div className="Coin__Volume">
-        <p>
-          100,000
-          백만
-        </p>
+      <div className="Coin__Average">
+        <p>{average.toLocaleString()}</p>
       </div>
     </div>
   );
 };
-export default HoldCoin;
+export default React.memo(HoldCoin);

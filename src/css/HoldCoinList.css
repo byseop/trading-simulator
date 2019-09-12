@@ -1,42 +1,57 @@
 @charset "utf-8";
 
 .Hold__Coin__List {
-    height: 100%;
+  height: 100%;
 }
 .Hold__Coin__List .List__Head {
-    display: flex;
+  display: flex;
 }
 .Hold__Coin__List .List__Head {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    padding: 0.8rem 0;
-    text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.8rem 0;
+  text-align: center;
 }
 .Hold__Coin__List .List__Head span {
-    font-size: 0.75rem;
-    color: #a9a9a9;
+  font-size: 0.75rem;
+  color: #a9a9a9;
 }
 .Hold__Coin__List .Coin__Name {
-    width: 100px;
+  width: 100px;
 }
 .Hold__Coin__List .Coin__Price {
-    width: 100px;
+  width: 100px;
 }
 .Hold__Coin__List .Coin__Change__Price {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-        -moz-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    text-align: right;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: center;
 }
-.Hold__Coin__List .Coin__Volume {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-        -moz-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
+.Hold__Coin__List .Coin__Change__Price p {
+  text-align: right;
+}
+.Hold__Coin__List .Coin__Average {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.Hold__Coin__List .Coin__Average p {
+  text-align: right;
+}
+
+.not-hold {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #333;
+  height: 200px;
 }

@@ -38,7 +38,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
   const userDispatch = useUserDispatch();
 
   const { cash } = userState;
-  console.log(userState);
+  // console.log(userState);
   const trade = useCallback(() => {
     if (type === 'ASK') {
       userDispatch({
@@ -47,6 +47,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
           coin: {
             totalPrice: totalPrice,
             code: fnCodeStr(1),
+            fullcode: code,
             volume: inputVolume,
           },
         },
@@ -58,6 +59,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
           coin: {
             totalPrice: totalPrice,
             code: fnCodeStr(1),
+            fullcode: code,
             volume: inputVolume,
           },
         },
@@ -65,7 +67,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
     } else throw new Error(`Unhandled trade type ${type}`);
     setInputPrice(0);
     setInputVolume(0);
-  }, [userDispatch, type, totalPrice, inputVolume, fnCodeStr]);
+  }, [userDispatch, type, totalPrice, inputVolume, fnCodeStr, code]);
 
   return (
     <div className="Trade__Form">
@@ -92,6 +94,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
             }}
             value={inputPrice}
             onChange={e => setInputPrice(Number(e.target.rawValue))}
+            readOnly
           />
           <label>{fnCodeStr(0)}</label>
         </div>
