@@ -38,7 +38,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
   const userDispatch = useUserDispatch();
 
   const { cash } = userState;
-  console.log(userState);
+  // console.log(userState);
   const trade = useCallback(() => {
     if (type === 'ASK') {
       userDispatch({
@@ -69,6 +69,10 @@ const TradeForm = ({ type, orderbookData, code }) => {
     setInputVolume(0);
   }, [userDispatch, type, totalPrice, inputVolume, fnCodeStr, code]);
 
+  const askAlert = useCallback(() => {
+    alert('왼쪽 호가창에서 가격을 선택해주세요.');
+  }, []);
+
   return (
     <div className="Trade__Form">
       <div className="Form__List">
@@ -95,6 +99,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
             value={inputPrice}
             onChange={e => setInputPrice(Number(e.target.rawValue))}
             readOnly
+            onClick={askAlert}
           />
           <label>{fnCodeStr(0)}</label>
         </div>

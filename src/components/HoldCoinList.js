@@ -8,7 +8,7 @@ const HoldCoinList = () => {
   const { data: markets } = marketState.market;
 
   const userState = useUserState();
-  console.log(userState);
+  // console.log(userState);
 
   return (
     <div className="Hold__Coin__List">
