@@ -38,7 +38,7 @@ const TradeForm = ({ type, orderbookData, code }) => {
   const userDispatch = useUserDispatch();
 
   const { cash } = userState;
-  // console.log(userState);
+  console.log(userState);
   const trade = useCallback(() => {
     if (type === 'ASK') {
       userDispatch({

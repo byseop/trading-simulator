@@ -9,6 +9,7 @@ const HoldCoinList = () => {
 
   const userState = useUserState();
   console.log(userState);
+
   return (
     <div className="Hold__Coin__List">
       <div className="List__Head">
@@ -50,4 +51,4 @@ const HoldCoinList = () => {
   );
 };
 
-export default React.memo(HoldCoinList);
+export default HoldCoinList;

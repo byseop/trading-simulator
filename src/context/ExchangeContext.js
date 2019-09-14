@@ -269,6 +269,7 @@ const fnBid = (state, bidCoin) => {
 
   if (holdingCoin) {
     if (holdingCoin.volume < bidCoin.volume) {
+      // 보유중인 코인의 수량보다 판매요청한 수량이 많을 때
       alert(`보유중인 ${bidCoin.code}이(가) 요청 수량보다 적습니다.`);
       return {
         cash: state.cash,
@@ -277,20 +278,18 @@ const fnBid = (state, bidCoin) => {
     } else {
       return {
         cash: (state.cash += bidCoin.totalPrice),
-        coin: state.coin.map(list => {
-          if (list.code === holdingCoin.code) {
-            if (list.totalPrice !== holdingCoin.totalPrice) {
-              list.totalPrice -= holdingCoin.totalPrice;
-              list.volume -= holdingCoin.volume;
-            } else {
-              list.totalPrice = 0;
-              list.volume = 0;
+        coin: state.coin.reduce((acc, cur) => {
+          if (cur.code === bidCoin.code) {
+            if (cur.volume !== bidCoin.volume) {
+              cur.volume -= bidCoin.volume;
+              cur.totalPrice -= bidCoin.totalPrice;
+              acc.push(cur);
             }
-            return list;
           } else {
-            return list;
+            acc.push(cur);
           }
-        }),
+          return acc;
+        }, []),
       };
     }
   } else {
