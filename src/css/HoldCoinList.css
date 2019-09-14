@@ -25,6 +25,11 @@
 .Hold__Coin__List .Coin__Price {
   width: 100px;
 }
+.Hold__Coin__List .Coin__Price p span {
+  display: block;
+  font-size: 0.5rem;
+  color: #a9a9a9 !important;
+}
 .Hold__Coin__List .Coin__Change__Price {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -45,6 +50,11 @@
 }
 .Hold__Coin__List .Coin__Average p {
   text-align: right;
+}
+.Hold__Coin__List .Coin__Average p span {
+  font-size: 0.5rem;
+  display: block;
+  color: #a9a9a9;
 }
 
 .not-hold {
